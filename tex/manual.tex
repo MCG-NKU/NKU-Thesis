@@ -1,0 +1,427 @@
+% -*- coding: utf-8 -*-
+
+\chapter{学术规范}
+
+在撰写任何学位论文或者学术论文之前，系统地了解学术规范都不可或缺。
+如果您之前对学术规范，
+特别是如何避免一些不好的习惯导致无意中的学术不端行为不太清楚，
+特别推荐认真学习南开大学程明明教授的课程
+《学术规范与论文写作指导》\cite{AcademicNorm}。 
+该课程共16学时，前2个学时需要系统地学习学术规范的知识，
+并且需要通过学术规范的在线考核。
+后面的14个学时介绍计算机学科科技论文写作的技巧。
+所有课程视频均可以通过网站\url{https://mmcheng.net/writing/}
+访问。
+
+
+\chapter{南开大学学位论文格式宏包 NKThesis 使用说明} \label{chpt:A}
+
+\section{系统要求}
+
+模板在 TexLive 2020/2021/2022 下测试\XeLaTeX, PDF\LaTeX 通过。
+对于其它 TeX 发行版可能需要做个别修改。
+
+
+本模板最初版来自孙老师\url{http://222.30.48.141/$\sim$sunwch}的版本，
+格式参照南开大学2019年毕业论文格式。
+后来在志愿者的努力下做成了开源项目
+\url{https://github.com/NewFuture/NKThesis}。
+%
+同时，赵子懿，潘宇等同学也主动维护了本科论文的\LaTeX 开源版本
+\url{https://www.overleaf.com/latex/templates/nku-dissertation-template2020/ryscpwbhbmhs}。
+%
+鉴于各种版本维护复杂，2022年12月疫情期间，南开大学计算机系程明明教授
+在硕士、博士论文的基础上，统一了本科、学术硕士、专业硕士、博士和专业博士的
+论文模板。
+新的模板在GitHb上开放共享\url{https://github.com/MCG-NKU/NKU-Thesis}，
+欢迎有问题的同学及时反馈。
+
+\section{NKThesis 使用说明}
+
+本模板可以使用以下两种方式编译:
+\begin{enumerate}
+ \item \XeLaTeX + BibTex 
+ \item PDF\LaTeX + BibTex [推荐原因：不同平台间一致性更高, 见\figref{fig:plantf}]
+\end{enumerate}
+
+在改变编译方式前建议先删除 *.toc 和 *.aux 文件，
+因为不同编译方式产生的辅助文件格式可能并不相同。
+%
+Windows系统中已经默认包含这些字体文件：
+simfang.ttf，SimSun.ttc，simkai.ttf，SimHei.ttf，
+\textcolor{red}{因而在Windows系统中删除这些字体文件也可以正确编译。}
+%
+如果需要在Overleaf等非Windows环境下使用pdfLaTex，请上传上述文件至根目录。
+
+
+
+
+\section{引用章节号}
+\label{sec:ex:A}
+
+引用章节号请参考如下格式: \ref{chpt:A}\ref{sec:ex:A}.
+
+
+\section{中英文间隔}
+
+使用 \XeLaTeX\ 编译时，会自动在中英文转换时添加必要的空格。 使用 [PDF]\LaTeX\
+编译时仅忽略中文之间的空格，而中英文之间的空格予以保留。
+因此，不管何种编译方式，您都不需要在中英文间添加 $\tilde{}$ 以获得额外的空格。例如，
+
+这是 English 中文 $x=y$ 测试
+
+这是English中文$x=y$测试
+
+可以看出，以上两行用 \XeLaTeX\ 编译的结果是相同的。
+
+
+\section{NKThesis 预调用的宏包}
+
+NKThesis 已经调用以下宏包，您无须重新调用。
+
+\begin{center}
+\tablecaption{NKThesis 预调用的宏包}
+\begin{tabular}{l|l}
+\hline
+编译方式 & 调用的宏包\\ \hline
+\XeLaTeX & xeCJK, CJKnumb, graphicx, mathptmx \\ \hline
+[PDF]\LaTeX & CJK, CJKnumb, uniGBK, graphicx, mathptmx \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\section{图表}
+
+插图的例子：
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[viewport=0 0 2984 969,width=40mm]{nankaidaxue.pdf}
+  \caption{南开大学}
+\end{figure}
+
+\section{字体}
+
+
+一般情况下, 您不需要显式地设置字体。
+如果确实需要, 请使用以下命令
+
+
+\renewcommand{\AddFig}[1]{\includegraphics[height=.17\textwidth]{#1}}
+
+\begin{figure}
+  \centering
+  \begin{minipage}[t]{.5\linewidth}
+    \begin{verbatim}
+    宋体:  \rmfamily 或 \songti
+    黑体:  \bfseries 或 \heiti
+    楷体:  \itshape  或 \kaiti
+    仿宋:  \ttfamily 或 \fangsong
+    加粗:  \jiacu
+    \end{verbatim}
+  \end{minipage} \hfill
+  \begin{minipage}[t]{.4\linewidth}
+    \songti{宋体Font}, \rmfamily{宋体Font} \\
+    \bfseries{黑体Font}, \heiti{黑体Font} \\
+    \itshape{楷体Font}, \kaiti{楷体Font} \\
+    \ttfamily{仿宋Font}, \fangsong{仿宋Font} \\ 
+    \jiacu{加粗Font}\\
+  \end{minipage}
+  \subfloat[PdfLaTeX + Win/Over]{\AddFig{PdfLatexWin.png}} \hfill
+  \subfloat[XeLaTeX + Win]{\AddFig{XeLaTeXWin.png}} \hfill
+  %\subfloat[PdfLaTeX + Over]{\AddFig{PdfLaTeXOverleaf.png}} \hfill
+  \subfloat[XeLaTeX + Over]{\AddFig{XeLaTeXOverleaf.png}}
+  \caption{字体设置示例：Win代表Windows系统，Over代表Overleaf上。}
+  \label{fig:plantf}
+\end{figure}
+
+
+
+
+\section{参考文献} \label{manual:ref}
+参考文献引用:
+\cite{ChenCheChen2001,Nadkarni-1992,Hua-Wang-1973}
+文献\cite{ZhuKeZhen,Huo}\cite{Timoshenko,Zhang-Wang}
+\cite[Theorem 2.1]{ZhuKeZhen,21PAMI-Sal100K}
+
+\subsection{录入参考文献}
+
+本模板采用 bibtex 宏包管理参考文献。如果你对此不熟悉，可以
+\begin{enumerate}
+\item 参考宏包使用说明，或者
+\item 手工排版参考文献，然后参考 nkthesis.bib 最后 3 条的格式录入。
+\end{enumerate}
+
+
+
+\section{一些建议}
+\subsection{关于分数的写法}
+
+
+\LaTeX 提供宏命令\verb+\frac+, 用以打印分数. 为使得版面整齐, 该命令的使用应遵循以下原则:
+
+\begin{enumerate}
+\item 仅在分行表达式中使用,
+\item 不嵌套使用,
+\item 不在上下标中使用.
+\end{enumerate}
+
+也就是说, 行内表达式和上下标中出现分数时一律用 $a/b$表示, 如
+$(x+2)/((3x^2+4)(7+y))$. 下面是居中表达式:
+
+\[
+ x^2 = y^{1/2} +3.
+\]
+
+多行表达式: 尽量在加、减、乘、等号前换行. 在乘号前换行时,
+下一行首用 \string\times:
+\def\iint{\mathop{\int\!\!\!\int}}\def\calG{\mathcal G}
+\begin{eqnarray}
+&&\left|(W_{\psi_1}f)(a,b)-(W_{\psi_1}f)(a_j,b_{j,k})\right|^{2}\nonumber\\
+&=&\frac{1}{C^{2}_{\varphi}}\Bigg|\iint_{\calG} (W_{\varphi}f)(s,t) \nonumber\\
+&&\qquad\times \Bigg( (W_{\psi_1}\varphi)\left(\frac{a}{s},
+\frac{b-t}{s}\right)
+     -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\Bigg)
+  \frac{dsdt}{s^{d+1}}\Bigg|^2 \nonumber\\
+&\le& \frac{1}{C^2_{\varphi}} \iint_{\calG} |(W_{\varphi}f)(s,t)|^2 \nonumber\\
+&&\qquad \times\left| (W_{\psi_1}\varphi)\left(\frac{a}{s},
+\frac{b-t}{s}\right)
+    -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\right|
+   \frac{dsdt}{s^{d+1}}  \nonumber\\
+&&\qquad \times   \iint_{\calG}\!
+ \left|(W_{\psi_1}\varphi)\left(\frac{a}{s}, \frac{b-t}{s}\right)
+    -(W_{\psi_1}\varphi)\left(\frac{a_{j}}{s}, \frac{b_{j,k}-t}{s}\right)\right|
+ \frac{ ds dt}{s^{d+1}} \nonumber\\
+&=& \frac{1}{C^2_{\varphi}} ....  \label{eq:a0}
+\end{eqnarray}
+
+
+\subsection{标点}
+科技文献中一般用半角标点, 请参考《中国科学》发表的论文.
+
+如果使用全角标点, 可以使用
+\begin{verbatim}
+  \punctstyle{<style>}
+\end{verbatim}
+选择标点样式, 有效值为
+\begin{verbatim}
+  quanjiao (所有标点符号占一个汉字宽度，
+            相邻两个标点占一个半汉字宽度)
+  banjiao  (所有标点符号占半个汉字宽度)
+  hangmobanjiao (所有标点符号占一个汉字宽度，行末行首半角)
+  kaiming  (句号、叹号、问号占一个汉字宽度，其他标点占半个汉字宽度)
+\end{verbatim}
+缺省为全角式。注意：不论选择哪种样式，都提供行末对齐(margin kerning)功能。
+
+
+
+\begin{Theorem} \label{thm:latex}
+\LaTeX 的输出是最完美的.
+\end{Theorem}
+
+先证明一个引理
+\begin{Lemma} \label{thm:tex}
+\TeX 文件在不同操作系统下的排版结果完全一致.
+\end{Lemma}
+
+\begin{proof}
+这是证明.
+\end{proof}
+
+
+\begin{proof}[定理~\ref{thm:latex}的证明]
+显然是错的.
+\end{proof}
+
+单个带编号的表达式
+\begin{equation}\label{eq:a1}
+x=y+z
+\end{equation}
+
+单个不带编号的表达式
+\[
+y=x-z.
+\]
+
+不带编号的多行表达式
+\begin{eqnarray*}
+x&=&y+z \\
+ &=&z-s\\
+ &<& 3. \\
+ && \mbox{一些注释}
+\end{eqnarray*}
+
+带编号的多行表达式
+\begin{eqnarray}
+ x&=& y-z, \label{eq:aa1}\\
+ y&=& x+z, \nonumber \\
+ z&=&y-x. \label{eq:aa2}
+\end{eqnarray}
+
+
+
+引用:   定理\ref{thm:latex}的推论是什么呢？
+方程式编号:  由(\ref{eq:a1})(\ref{eq:aa2})式.
+
+\subsection{列举环境:  enumerate}
+
+环境 enumerate 已经被改写，增加了一个可选参数[字符串], 用以控制所进。例如，
+\begin{verbatim}
+  \begin{enumerate}
+    \item This is an example.
+    \item This is an example.
+      \begin{enumerate}
+      \item This is an example.
+      \item This is an example.
+    \end{enumerate}
+  \end{enumerate}
+  \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的缩进。
+                       % 缺省值为 [M]
+    \item This is an example.
+    \item This is an example.
+      \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的缩进。
+      \item This is an example.
+      \item This is an example.
+    \end{enumerate}
+  \end{enumerate}
+\end{verbatim}
+的输出为
+  \begin{enumerate}
+    \item This is an example.
+    \item This is an example.
+      \begin{enumerate}
+      \item This is an example.
+      \item This is an example.
+    \end{enumerate}
+  \end{enumerate}
+  \begin{enumerate}[Mn]% 字符串"Mn"的宽度为增加的所进。
+                       % 缺省值为 [M]
+    \item This is an example.
+    \item This is an example.
+      \begin{enumerate}[Mnn]% 字符串"Mnn"的宽度为增加的所进。
+      \item This is an example.
+      \item This is an example.
+    \end{enumerate}
+  \end{enumerate}
+
+\clearpage
+
+\section{\TeX\ 简介}
+
+以下内容是 milksea@bbs.ctex.org 撰写的关于\TeX\ 的简单介绍。
+注意这不是一个入门教程，不讲 \TeX\ 系统的配置安装，也不讲具体的 \LaTeX\ 代码。
+这里仅仅试图以一些只言片语来解释：
+进入这个门槛之前新手应该知道的注意事项，以及遇到问题以后该去如何解决问题。
+
+\subsection{什么是Latex，我是否应该选择它}
+
+\TeX\ 是最早由高德纳（Donald Knuth）教授创建的一门标记式宏语言，
+用来排版科技文章，尤其擅长处理复杂的数学公式。\TeX\ 同时也是处理这一语言的排版软件。
+\LaTeX\ 是 Leslie Lamport 在 \TeX\ 基础上按内容/格式分离和模块化等思想建立的一集 \TeX\ 上的格式。
+
+\TeX\ 本身的领域是专业排版（即方正书版、InDesign 的领域），
+但现在 TeX/LaTeX 也被广泛用于生成电子文档甚至幻灯片等，\TeX\ 语言的数学部分
+偶尔也在其他一些地方使用。但注意 \TeX\ 并不适用于文书处理（MS Office 的领域，以前和现在都不是）。
+
+选择使用 \TeX/\LaTeX\ 的理由包括：
+\begin{itemize}
+\item 免费软件；
+\item 专业的排版效果；
+\item 是事实上的专业数学排版标准；
+\item 广泛的西文期刊接收甚或只接收 LaTeX 格式的投稿；
+\item[] ……
+\end{itemize}
+不选择使用 \TeX/\LaTeX\ 的理由包括：
+\begin{itemize}
+\item 需要相当精力学习；
+\item 图文混合排版能力弱；
+\item 仅流行于数学、物理、计算机等领域；
+\item 中文期刊的支持较差；
+\item[] ……
+\end{itemize}
+
+请尽量清醒看待网上经常见到的关于 \TeX\ 与其他软件的优劣比较和口水战。在选择使用或离开之前，请先考虑
+\TeX\ 的应用领域，想想它是否适合你的需要。
+
+\def\AAAA{}
+
+\subsection{我该用什么编辑器？}
+
+编辑器功能有简有繁，特色不一，因人而易。
+基本功能有语法高亮、方便编译预览就很好了，扩充功能和定制有无限的可能。
+初学者强烈推荐免费的VSCode + TexLive。
+VSCode支持多种插件，如LaTex Workshop插件支持LaTeX的编译，
+Git Project Manager支持版本同步等。
+
+
+\subsection{我该去哪里寻找答案？}
+
+0、绝对的新手，先读完一本入门读物，了解基本的知识。
+
+1、无论如何，先读文档！绝大部分问题都是文档可以解决的。
+
+2、再利用 Google 搜索，利用(bbs.ctex.org)版面搜索。
+
+3、清楚、聪明地提出你的问题。
+
+
+\subsection{我应该看什么 LaTeX 读物？}
+
+这不是一个容易回答的问题，因为有许多选择，也同样有许多不合适的选择。
+这里只是选出一个比较好的答案。更多更详细的介绍可以在版面和网上寻找（注意时效）。
+
+近两年 \TeX\ 的中文处理发展很快，目前没有哪本书在中文处理方面给出一个最新进展的合适综述，
+因而下面的介绍也不主要考虑中文处理。
+
+\begin{enumerate}
+\item 我可以阅读英文
+
+\begin{enumerate}
+\item 我要迅速入门：ltxprimer.pdf (LaTeX Tutorials: A Primer, India TUG)
+\item 我要系统学习：A Guide to LaTeX, 4th Edition, Addison-Wesley
+      有机械工业出版社的影印版（《LaTeX实用教程》）
+\item 我要深入学习：要读许多书和文档，TeXbook 是必读的
+\item 还有呢？去读你使用的每一个宏包的说明文档
+\item 还有许多专题文档，如讲数学公式、图形、表格、字体等
+\end{enumerate}
+
+\item 我更愿意阅读中文
+\begin{enumerate}
+\item 我要迅速入门：lnotes.pdf (LaTeX Notes, 1.20, Alpha Huang)
+\item 我要系统学习：《LaTeX2ε 科技排版指南》，邓建松（电子版）
+ 如果不好找，看《LaTeX 入门与提高》第二版，陈志杰等
+\item 我要深入学习：TeXbook0.pdf (特可爱原本，TeXbook 的中译，xianxian)
+\item 还有呢？英语，绝大多数 TeX 资料还是英文的
+\end{enumerate}
+\end{enumerate}
+
+
+\subsection{插图格式}
+
+常见的图片格式都支持，如PDF、PNG、JPG格式的图形。
+
+
+
+\subsection{作图}
+
+目前已经有很多优秀的\LaTeX\ 作图宏包，如 pgf/Tikz 和 pstricks，
+两者都具有强大的作图能力。
+
+\chapter{说明}
+
+
+
+本模板参照南开大学学位论文写作规范编写，
+仅仅提供了论文的基本格式，包括章节标题和正文字体、字号等等的设置。
+
+
+
+您自愿使用这个模板。
+提供本模板的目的是为了给您的论文写作带来方便，然而，
+作者不保证这个模板完全符合学校的要求，也不对由此产生的任何后果负责。
+如果您不同意这些条款，请不要使用这个模板。
+
+
+参考文献的录入请参考\ref{manual:ref}。 
+

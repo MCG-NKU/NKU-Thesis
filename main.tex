@@ -1,0 +1,97 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+
+
+\documentclass[]{NKThesis}   % 中文
+%\documentclass[English]{NKThesis} % 英文
+
+
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cite}
+\usepackage[caption=false]{subfig}
+
+\newcommand{\figref}[1]{\figurename~\ref{#1}}%
+\newcommand{\tabref}[1]{\tablename~\ref{#1}}%
+
+
+\newcommand{\AddFig}[2]{\includegraphics[width=#1\textwidth]{#2}}
+
+
+
+\graphicspath{{fig/}}
+
+% 为了分段编译更快
+\includeonly{
+./tex/abstract,
+./tex/manual,
+./tex/acknowl,
+./tex/resume
+}
+
+\newtheorem{Theorem}{\hskip 2em 定理}[chapter]
+\newtheorem{Lemma}[Theorem]{\hskip 2em 引理}
+\newtheorem{Corollary}[Theorem]{\hskip 2em 推论}
+\newtheorem{Proposition}[Theorem]{\hskip 2em 命题}
+\newtheorem{Definition}[Theorem]{\hskip 2em 定义}
+\newtheorem{Example}[Theorem]{\hskip 2em 例}
+
+
+
+\begin{document}
+
+%  设置基本信息
+%  注意:  逗号`,'是项目分隔符. 如果某一项的值出现逗号, 应放在花括号内, 如 {,}
+%
+\NKTsetup{%
+  论文题目(中文) = LaTeX论文模板,
+  副标题         = ——论文副标题,
+  论文题目(英文) =  A LaTeX thesis template,
+  论文作者       = 张十三,
+  学号           = 1020161111,
+  指导教师       = 张三\quad 教授,
+  申请学位       = 理学硕士,
+  培养单位       = 某某学院,
+  学科专业       = 某某某某,
+  研究方向       = 某某某某,
+  中图分类号     = ,
+  UDC            = ,
+  学校代码       = 10055,
+  密级           = 公开,
+                   % 公开 | 限制 | 秘密 | 机密, 若为公开, 不填以下三项
+  保密期限       = ,
+  审批表编号     = ,
+  批准日期       = ,
+  论文完成时间   = 二〇一九年三月,
+  答辩日期       = ,
+  论文类别       = 博士,
+                   % 博士 | 专业博士 | 硕士 | 专业硕士 | 本科
+  答辩委员会主席       = 李四,
+  评阅人       = 李四\quad 王五,      
+  专业           = 某某某某,
+  联系电话       = 1234567,
+  Email          = 123@123.com,
+  通讯地址(邮编) = 天津市南开区卫津路94号(300071),
+  备注           = {},
+}
+
+
+
+\include{./tex/abstract}
+
+\tableofcontents
+
+\include{./tex/manual}
+%\include{references}
+
+
+\bibliographystyle{NKThesis}
+%\bibliographystyle{gbt7714-author-year}
+\bibliography{nkthesis.bib}
+
+\include{./tex/acknowl}
+%\include{appendices}
+\include{./tex/resume}
+
+\end{document}
